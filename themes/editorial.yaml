@@ -1,0 +1,6 @@
+name: editorial
+mode: static
+font_family: serif
+accent: "#000000"
+max_width: 68rem
+flair: none

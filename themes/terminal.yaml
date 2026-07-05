@@ -1,0 +1,6 @@
+name: terminal
+mode: spa
+font_family: mono
+accent: "#000000"
+max_width: 74rem
+flair: terminal-rule

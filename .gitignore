@@ -1,0 +1,20 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Go artifacts
+/bin/
+/dist/
+*.test
+*.out
+coverage.txt
+
+# Generated output
+/site/
+/public/
+
+# OS/editor noise
+.DS_Store
+.idea/
+.vscode/

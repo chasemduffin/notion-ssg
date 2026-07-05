@@ -1,0 +1,6 @@
+name: cmd-bio
+mode: spa
+font_family: system
+accent: "#000000"
+max_width: 76rem
+flair: terminal-rule

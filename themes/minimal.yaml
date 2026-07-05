@@ -1,0 +1,6 @@
+name: minimal
+mode: static
+font_family: system
+accent: "#000000"
+max_width: 72rem
+flair: none
