@@ -41,17 +41,17 @@ Never commit tokens. Prefer `$NOTION_PAT` in your shell profile or a local `.env
 
 ### Local Usage
 
-Generate a site from the Notion page named `cmd.bio` into a local static-site repository:
+Generate a site from a Notion page into a local static-site directory:
 
 ```sh
 export NOTION_PAT=secret_xxx
-notion-ssg   --nav-root "cmd.bio"   --theme cmd-bio   --output ../cmd.bio
+notion-ssg --nav-root "My Site" --theme minimal --output ./public
 ```
 
 Equivalent explicit-token form:
 
 ```sh
-notion-ssg   --notion-pat secret_xxx   --nav-root "cmd.bio"   --theme themes/cmd-bio.yaml   --output ../cmd.bio
+notion-ssg --notion-pat secret_xxx --nav-root "My Site" --theme themes/minimal.yaml --output ./public
 ```
 
 `--notion-pat` takes precedence over `$NOTION_PAT`.
@@ -86,16 +86,16 @@ jobs:
 
       - run: go install github.com/chasemduffin/notion-ssg/cmd/notion-ssg@main
 
-      - run: notion-ssg --nav-root "cmd.bio" --theme cmd-bio --output .
+      - run: notion-ssg --nav-root "My Site" --theme minimal --output .
         env:
           NOTION_PAT: ${{ secrets.NOTION_PAT }}
 
       - name: Commit generated changes
         env:
-          GIT_AUTHOR_NAME: notion-ssg
-          GIT_AUTHOR_EMAIL: notion-ssg@users.noreply.github.com
-          GIT_COMMITTER_NAME: notion-ssg
-          GIT_COMMITTER_EMAIL: notion-ssg@users.noreply.github.com
+          GIT_AUTHOR_NAME: site-generator
+          GIT_AUTHOR_EMAIL: site-generator@example.com
+          GIT_COMMITTER_NAME: site-generator
+          GIT_COMMITTER_EMAIL: site-generator@example.com
         run: |
           git add -A
           git diff --cached --quiet || git commit -m "chore: update generated site"
@@ -121,7 +121,7 @@ Usage of notion-ssg:
 A theme can be a built-in name or a YAML file. Starter themes live in `themes/`.
 
 ```yaml
-name: cmd-bio
+name: minimal
 mode: spa
 font_family: system
 accent: "#000000"
@@ -192,7 +192,7 @@ go test ./...
 
 ## Output Safety
 
-The output directory is treated as generated content. For projects like `cmd.bio`, this is intentional: hand-written files may be replaced. Use a dedicated output directory or keep the target repository under version control so generated changes can be reviewed before commit.
+The output directory is treated as generated content. Hand-written files may be replaced. Use a dedicated output directory or keep the target repository under version control so generated changes can be reviewed before commit.
 
 ## Contributing
 
